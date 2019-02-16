@@ -1,0 +1,190 @@
+#!/bin/sh
+# Kext-Droplet
+# Copyright (c) 2019, chris1111. All Right Reserved
+# Permission to use, copy, modify, and/or distribute this software for any
+# purpose with or without fee is hereby granted, provided that the above
+# copyright notice and this permission notice appear in all copies.
+# THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+# WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+# MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+# ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+# WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+# ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+# OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+# Vars
+SLEDir="/System/Library/Extensions"
+LEDir="/Library/Extensions"
+TempDir="/Private/tmp/Install"
+BULEDir="$HOME/Desktop/BackupKext_LE"
+BUSLEDir="$HOME/Desktop/BackupKext_SLE"
+apptitle="Kext-Droplet"
+version="1.0"
+# Set Icon directory and file 
+iconfile="System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/KEXT.icns"
+echo "Starting"
+current_date_time="`date "+%Y-%m-%d %H:%M:%S"`";
+echo $current_date_time;
+echo "
+***********************************************************
+Kext-Droplet
+***********************************************************"
+# Set Droping directory and file
+for files in "$@" ;do
+
+if [ "/Private/tmp/Install" ]; then
+	rm -rf "/Private/tmp/Install"
+fi
+
+mkdir -p "${TempDir}"
+Sleep 1
+
+cp -R "$@" "${TempDir}"
+
+echo "Prepare Installation for:"
+for file in "${TempDir}"/*;
+do
+echo "${file##*/}"
+done
+
+
+Sleep 2
+# Select Choice
+response=$(osascript -e 'tell app "System Events" to display dialog "Kext-Droplet is a utility that allows you
+to install your kexts in all security in
+System Library Extensions or
+Library Extensions.
+Kext file, bundle and plugin are allow.
+NOTE: The files are overwritten if they exist, 
+bundle files and plugin are install in S/L/E only.
+A backup of the original files is performed.
+
+Choose where you want to install the kexts!
+
+S/L/E ➣ /System/Library/Extensions/ 
+L/E ➣ /Library/Extensions/" buttons {"Cancel","SLE","LE"} default button 1 with title "'"$apptitle"' '"$version"'" with icon POSIX file "'"$iconfile"'"  ')
+
+action=$(echo $response | cut -d ':' -f2)
+
+  #  Exit if Canceled
+  if [ "$action" == "Cancel" ] ; then
+    osascript -e 'display notification "Program closing" with title "'"$apptitle"'" subtitle "User cancelled"'     
+     exit 0
+  fi
+ 
+
+  #  Library Extensions is user select LE
+  if [ "$action" == "LE" ] ; then
+sleep 2
+echo "Verifying Kexts for /Library/Extensions/:"
+if [ -e "${3}/Library/Extensions/${file##*/}"  ]; then
+echo "Find ${file##*/} ➣ Save Kext for (LE)"
+mkdir -p ~/Desktop/BackupKext_LE
+for file in "${TempDir}"/*; 
+do
+Sleep 3
+rsync -ab "${TempDir}"/${file##*/} "$BULEDir";
+mv "$BULEDir" "${BULEDir}"`date "+%Y%m%d_%H%M%S"`
+done
+fi
+
+    osascript -e 'do shell script "/chown -R root:wheel /Private/tmp/Install/*.kext" with administrator privileges'
+    osascript -e 'do shell script "chmod -R 755 /Private/tmp/Install/*.kext" with administrator privileges'
+    osascript -e 'do shell script "cp -r /Private/tmp/Install/*.kext /Library/Extensions/" with administrator privileges' 
+  
+
+    touch "${3}/Library/Extensions/"
+
+    Sleep 2
+    rm -r /Private/tmp/Install
+
+echo "Kext processing.
+***********************************************************"
+Sleep 1
+echo "Ready to Authorize Permissions and Privileges
+***********************************************************"
+Sleep 1
+echo "Installations of Kexts
+***********************************************************"
+Sleep 1
+echo "You have to restart your mahine!
+***********************************************************"
+Sleep 3
+
+# script Notifications
+osascript -e 'display notification "Done" with title "Installation of Kexts"  sound name "default"'
+
+osascript -e 'tell app "loginwindow" to «event aevtrrst»'
+ 
+    exit 0
+  fi
+
+
+# Select SLE
+response=$(osascript -e 'tell app "System Events" to display dialog "Select SLE to install your kexts in /System/Library/Extensions/ 
+ 
+Cancel for Quit" buttons {"Cancel","SLE"} default button 2 with title "'"$apptitle"' '"$version"'" with icon POSIX file "'"$iconfile"'"  ')
+
+action=$(echo $response | cut -d ':' -f2)
+
+#  Exit if Canceled
+  if [ "$action" == "Cancel" ] ; then
+    osascript -e 'display notification "Program closing" with title "'"$apptitle"'" subtitle "User cancelled"'     
+     exit 0
+  fi
+
+### System Library Extensions is user select SLE
+if [ "$action" == "SLE" ] ; then
+
+sleep 1
+echo "Verifying Kexts for /System/Library/Extensions/:"
+if [ -e "${3}/System/Library/Extensions/${file##*/}"  ]; then
+echo "Find ${file##*/} ➣ Save Kext for (SLE)"
+mkdir -p ~/Desktop/BackupKext_SLE
+for file in "${TempDir}"/*;
+do
+Sleep 3
+rsync -ab "${TempDir}"/${file##*/} "$BUSLEDir";
+mv "$BUSLEDir" "${BUSLEDir}"`date "+%Y%m%d_%H%M%S"`
+done
+fi
+    
+    osascript -e 'do shell script "/chown -R root:wheel /Private/tmp/Install/*.kext" with administrator privileges'
+    osascript -e 'do shell script "chmod -R 755 /Private/tmp/Install/*.kext" with administrator privileges'
+    osascript -e 'do shell script "/chown -R root:wheel /Private/tmp/Install/*.plugin" with administrator privileges'
+    osascript -e 'do shell script "chmod -R 755 /Private/tmp/Install/*.plugin" with administrator privileges'
+    osascript -e 'do shell script "/chown -R root:wheel /Private/tmp/Install/*.bundle" with administrator privileges'
+    osascript -e 'do shell script "chmod -R 755 /Private/tmp/Install/*.bundle" with administrator privileges'
+    osascript -e 'do shell script "cp -r /Private/tmp/Install/*.kext /System/Library/Extensions/" with administrator privileges'
+    osascript -e 'do shell script "cp -r /Private/tmp/Install/*.plugin /System/Library/Extensions/" with administrator privileges'
+    osascript -e 'do shell script "cp -r /Private/tmp/Install/*.bundle /System/Library/Extensions/" with administrator privileges' 
+    
+
+    touch "${3}/Library/Extensions/"
+
+    Sleep 2
+    rm -r /Private/tmp/Install
+
+echo "Kext processing.
+***********************************************************"
+Sleep 1
+echo "Ready to Authorize Permissions and Privileges
+***********************************************************"
+Sleep 1
+echo "Installations of Kexts
+***********************************************************"
+Sleep 1
+echo "You have to restart your mahine!
+***********************************************************"
+Sleep 3
+
+
+# script Notifications
+osascript -e 'display notification "Done" with title "Installation of Kexts"  sound name "default"'
+
+osascript -e 'tell app "loginwindow" to «event aevtrrst»'
+ 
+    exit 0
+  fi
+
+
+done
