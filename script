@@ -118,6 +118,8 @@ then
 echo "Equal than Mavericks"
 echo "No need to put the Disk in R/W"
 Sleep 1
+echo "Kext Cache repair! Please wait. ."
+Sleep 1
 osascript ./Kextcache-Rebuild-Old.app
 fi
 
@@ -126,6 +128,8 @@ if [ $ThisMajorVersion == $YosemiteMajorVersion ]
 then
 echo "Equal than Yosemite"
 echo "No need to put the Disk in R/W"
+Sleep 1
+echo "Kext Cache repair! Please wait. ."
 Sleep 1
 osascript ./Kextcache-Rebuild-Old.app
 fi
@@ -136,6 +140,8 @@ then
 echo "Equal than EICapitan"
 echo "No need to put the Disk in R/W"
 Sleep 1
+echo "Kext Cache repair! Please wait. ."
+Sleep 1
 osascript ./Kextcache-Rebuild-Old.app
 fi
 
@@ -143,6 +149,8 @@ if [ $ThisMajorVersion == $SierraMajorVersion ]
 then
 echo "Equal than Sierra"
 echo "No need to put the Disk in R/W"
+Sleep 1
+echo "Kext Cache repair! Please wait. ."
 Sleep 1
 osascript ./Kextcache-Rebuild.app
 fi
@@ -152,6 +160,8 @@ then
 echo "Equal than HighSierra"
 echo "No need to put the Disk in R/W"
 Sleep 1
+echo "Kext Cache repair! Please wait. ."
+Sleep 1
 osascript ./Kextcache-Rebuild.app
 fi
 
@@ -160,6 +170,8 @@ if [ $ThisMajorVersion == $MojaveMajorVersion ]
 then
 echo "Equal than Mojave"
 echo "No need to put the Disk in R/W"
+Sleep 1
+echo "Kext Cache repair! Please wait. ."
 Sleep 1
 osascript ./Kextcache-Rebuild.app
 fi
@@ -174,6 +186,8 @@ osascript -e 'do shell script "mount -uw /" with administrator privileges'
 Sleep 1
 killall Finder
 Sleep 1
+echo "Kext Cache repair! Please wait. ."
+Sleep 1
 osascript ./Kextcache-Rebuild.app
 fi
 
@@ -185,12 +199,6 @@ fi
     Sleep 2
     rm -r /Private/tmp/Install
 
-echo "
-Kext processing "
-Sleep 3
-echo "
-Installations of Kexts "
-Sleep 2
 echo " "
 echo "
 You have to restart your mahine! "
@@ -261,6 +269,8 @@ then
 echo "Equal than Mavericks"
 echo "No need to put the Disk in R/W"
 Sleep 1
+echo "Kext Cache repair! Please wait. ."
+Sleep 1
 osascript ./Kextcache-Rebuild-Old.app
 fi
 
@@ -269,6 +279,8 @@ if [ $ThisMajorVersion == $YosemiteMajorVersion ]
 then
 echo "Equal than Yosemite"
 echo "No need to put the Disk in R/W"
+Sleep 1
+echo "Kext Cache repair! Please wait. ."
 Sleep 1
 osascript ./Kextcache-Rebuild-Old.app
 fi
@@ -279,6 +291,8 @@ then
 echo "Equal than EICapitan"
 echo "No need to put the Disk in R/W"
 Sleep 1
+echo "Kext Cache repair! Please wait. ."
+Sleep 1
 osascript ./Kextcache-Rebuild-Old.app
 fi
 
@@ -286,6 +300,8 @@ if [ $ThisMajorVersion == $SierraMajorVersion ]
 then
 echo "Equal than Sierra"
 echo "No need to put the Disk in R/W"
+Sleep 1
+echo "Kext Cache repair! Please wait. ."
 Sleep 1
 osascript ./Kextcache-Rebuild.app
 fi
@@ -295,6 +311,8 @@ then
 echo "Equal than HighSierra"
 echo "No need to put the Disk in R/W"
 Sleep 1
+echo "Kext Cache repair! Please wait. ."
+Sleep 1
 osascript ./Kextcache-Rebuild.app
 fi
 
@@ -303,6 +321,8 @@ if [ $ThisMajorVersion == $MojaveMajorVersion ]
 then
 echo "Equal than Mojave"
 echo "No need to put the Disk in R/W"
+Sleep 1
+echo "Kext Cache repair! Please wait. ."
 Sleep 1
 osascript ./Kextcache-Rebuild.app
 fi
@@ -317,8 +337,12 @@ osascript -e 'do shell script "mount -uw /" with administrator privileges'
 Sleep 1
 killall Finder
 Sleep 1
+echo "Kext Cache repair! Please wait. ."
+Sleep 1
 osascript ./Kextcache-Rebuild.app
 fi
+
+
 
     osascript -e 'do shell script "/chown -R root:wheel /Private/tmp/Install/*.kext" with administrator privileges'
     osascript -e 'do shell script "chmod -R 755 /Private/tmp/Install/*.kext" with administrator privileges'
@@ -335,12 +359,6 @@ fi
     Sleep 2
     rm -r /Private/tmp/Install
 
-echo "
-Kext processing "
-Sleep 3
-echo "
-Installations of Kexts "
-Sleep 2
 echo " "
 echo "
 You have to restart your mahine! "
