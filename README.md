@@ -1,5 +1,7 @@
 # Kext-Droplet
 
+#### Download Release V2 ➤ [Kext-Droplet.dmg.zip](https://github.com/chris1111/Kext-Droplet/releases/tag/V2)
+
 ### Simple Utility for installing kexts in macOS
 - Update 27 Dec 2019 working 10.9 to 10.15
 
@@ -12,5 +14,3 @@
 ![Capture7](https://user-images.githubusercontent.com/6248794/71537771-e7880500-28ee-11ea-9ec8-0cea2e143c5d.png)
 
 
-
-#### Download Release V2 ➤ [Kext-Droplet.dmg.zip](https://github.com/chris1111/macOS-Mojave-USB-Restore/releases/tag/V2)
