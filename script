@@ -18,16 +18,15 @@ TempDir="/Private/tmp/Install"
 BULEDir="$HOME/Desktop/BackupKext_LE"
 BUSLEDir="$HOME/Desktop/BackupKext_SLE"
 apptitle="Kext-Droplet"
-version="1.0"
+version="1.2"
 # Set Icon directory and file 
 iconfile="System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/KEXT.icns"
-echo "Starting"
-current_date_time="`date "+%Y-%m-%d %H:%M:%S"`";
-echo $current_date_time;
+echo " "
+
 echo "
-***********************************************************
+******************************************************
 Kext-Droplet
-***********************************************************"
+******************************************************"
 # Set Droping directory and file
 for files in "$@" ;do
 
@@ -87,33 +86,103 @@ mv "$BULEDir" "${BULEDir}"`date "+%Y%m%d_%H%M%S"`
 done
 fi
 
+echo "Verification System version"
+
+MavericksMajorVersion="13"
+YosemiteMajorVersion="14"
+EICapitanMajorVersion="15"
+SierraMajorVersion="16"
+HighSierraMajorVersion="17"
+MojaveMajorVersion="18"
+CatalinaMajorVersion="19"
+
+ThisVersion=`uname -r`
+echo ThisVersion=$ThisVersion
+
+ThisMajorVersion=${ThisVersion:0:2}
+echo ThisMajorVersion=$ThisMajorVersion
+
+case $ThisMajorVersion in
+	$MavericksMajorVersion)		OsName="Mavericks";;
+	$YosemiteMajorVersion)		OsName="Yosemite";;
+	$EICapitanMajorVersion)		OsName="EICapitan";;
+	$SierraMajorVersion)		OsName="Sierra";;
+	$HighSierraMajorVersion)	OsName="HighSierra";;
+	$MojaveMajorVersion)		OsName="Mojave";;
+    $CatalinaMajorVersion)		OsName="Catalina";;
+esac
+
+
+if [ $ThisMajorVersion == $MavericksMajorVersion ]
+then
+echo "Equal than Mavericks"
+echo "No need to put the Disk in R/W"
+fi
+
+
+if [ $ThisMajorVersion == $YosemiteMajorVersion ]
+then
+echo "Equal than Yosemite"
+echo "No need to put the Disk in R/W"
+fi
+
+
+if [ $ThisMajorVersion == $EICapitanMajorVersion ]
+then
+echo "Equal than EICapitan"
+echo "No need to put the Disk in R/W"
+fi
+
+if [ $ThisMajorVersion == $SierraMajorVersion ]
+then
+echo "Equal than Sierra"
+echo "No need to put the Disk in R/W"
+fi
+
+if [ $ThisMajorVersion == $HighSierraMajorVersion ]
+then
+echo "Equal than HighSierra"
+echo "No need to put the Disk in R/W"
+fi
+
+
+if [ $ThisMajorVersion == $MojaveMajorVersion ]
+then
+echo "Equal than Mojave"
+echo "No need to put the Disk in R/W"
+fi
+
+
+if [ $ThisMajorVersion == $CatalinaMajorVersion ]
+then
+echo "Equal than Catalina"
+echo "Put the Disk in R/W for Catalina"
+sleep 3
+osascript -e 'do shell script "mount -uw /" with administrator privileges'
+Sleep 1
+killall Finder
+fi
+
     osascript -e 'do shell script "/chown -R root:wheel /Private/tmp/Install/*.kext" with administrator privileges'
     osascript -e 'do shell script "chmod -R 755 /Private/tmp/Install/*.kext" with administrator privileges'
     osascript -e 'do shell script "cp -r /Private/tmp/Install/*.kext /Library/Extensions/" with administrator privileges' 
-  
-
-    touch "${3}/Library/Extensions/"
+ 
 
     Sleep 2
     rm -r /Private/tmp/Install
 
-echo "Kext processing.
-***********************************************************"
-Sleep 1
-echo "Ready to Authorize Permissions and Privileges
-***********************************************************"
-Sleep 1
-echo "Installations of Kexts
-***********************************************************"
-Sleep 1
-echo "You have to restart your mahine!
-***********************************************************"
+echo "
+Kext processing "
 Sleep 3
-
-# script Notifications
-osascript -e 'display notification "Done" with title "Installation of Kexts"  sound name "default"'
-
-osascript -e 'tell app "loginwindow" to «event aevtrrst»'
+echo "
+Installations of Kexts "
+Sleep 2
+echo " "
+osascript ./Kextcache-Rebuild.app
+Sleep 3
+echo "
+You have to restart your mahine! "
+Sleep 3
  
     exit 0
   fi
@@ -147,7 +216,85 @@ rsync -ab "${TempDir}"/${file##*/} "$BUSLEDir";
 mv "$BUSLEDir" "${BUSLEDir}"`date "+%Y%m%d_%H%M%S"`
 done
 fi
-    
+
+echo "Verification System version"
+
+MavericksMajorVersion="13"
+YosemiteMajorVersion="14"
+EICapitanMajorVersion="15"
+SierraMajorVersion="16"
+HighSierraMajorVersion="17"
+MojaveMajorVersion="18"
+CatalinaMajorVersion="19"
+
+ThisVersion=`uname -r`
+echo ThisVersion=$ThisVersion
+
+ThisMajorVersion=${ThisVersion:0:2}
+echo ThisMajorVersion=$ThisMajorVersion
+
+case $ThisMajorVersion in
+	$MavericksMajorVersion)		OsName="Mavericks";;
+	$YosemiteMajorVersion)		OsName="Yosemite";;
+	$EICapitanMajorVersion)		OsName="EICapitan";;
+	$SierraMajorVersion)		OsName="Sierra";;
+	$HighSierraMajorVersion)	OsName="HighSierra";;
+	$MojaveMajorVersion)		OsName="Mojave";;
+    $CatalinaMajorVersion)		OsName="Catalina";;
+esac
+
+
+if [ $ThisMajorVersion == $MavericksMajorVersion ]
+then
+echo "Equal than Mavericks"
+echo "No need to put the Disk in R/W"
+fi
+
+
+if [ $ThisMajorVersion == $YosemiteMajorVersion ]
+then
+echo "Equal than Yosemite"
+echo "No need to put the Disk in R/W"
+fi
+
+
+if [ $ThisMajorVersion == $EICapitanMajorVersion ]
+then
+echo "Equal than EICapitan"
+echo "No need to put the Disk in R/W"
+fi
+
+if [ $ThisMajorVersion == $SierraMajorVersion ]
+then
+echo "Equal than Sierra"
+echo "No need to put the Disk in R/W"
+fi
+
+if [ $ThisMajorVersion == $HighSierraMajorVersion ]
+then
+echo "Equal than HighSierra"
+echo "No need to put the Disk in R/W"
+fi
+
+
+if [ $ThisMajorVersion == $MojaveMajorVersion ]
+then
+echo "Equal than Mojave"
+echo "No need to put the Disk in R/W"
+fi
+
+
+if [ $ThisMajorVersion == $CatalinaMajorVersion ]
+then
+echo "Equal than Catalina"
+echo "Put the Disk in R/W for Catalina"
+sleep 3
+osascript -e 'do shell script "mount -uw /" with administrator privileges'
+Sleep 1
+killall Finder
+fi
+
+
     osascript -e 'do shell script "/chown -R root:wheel /Private/tmp/Install/*.kext" with administrator privileges'
     osascript -e 'do shell script "chmod -R 755 /Private/tmp/Install/*.kext" with administrator privileges'
     osascript -e 'do shell script "/chown -R root:wheel /Private/tmp/Install/*.plugin" with administrator privileges'
@@ -159,32 +306,24 @@ fi
     osascript -e 'do shell script "cp -r /Private/tmp/Install/*.bundle /System/Library/Extensions/" with administrator privileges' 
     
 
-    touch "${3}/Library/Extensions/"
 
     Sleep 2
     rm -r /Private/tmp/Install
 
-echo "Kext processing.
-***********************************************************"
-Sleep 1
-echo "Ready to Authorize Permissions and Privileges
-***********************************************************"
-Sleep 1
-echo "Installations of Kexts
-***********************************************************"
-Sleep 1
-echo "You have to restart your mahine!
-***********************************************************"
+echo "
+Kext processing "
 Sleep 3
-
-
-# script Notifications
-osascript -e 'display notification "Done" with title "Installation of Kexts"  sound name "default"'
-
-osascript -e 'tell app "loginwindow" to «event aevtrrst»'
+echo "
+Installations of Kexts "
+Sleep 2
+echo " "
+osascript ./Kextcache-Rebuild.app
+Sleep 3
+echo "
+You have to restart your mahine! "
+Sleep 3
  
     exit 0
   fi
-
 
 done
