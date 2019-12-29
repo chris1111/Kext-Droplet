@@ -1,4 +1,7 @@
 # Kext-Droplet
+View full Video ⬇︎
+[![Modular Image Creation](https://i.ibb.co/K5bFrB5/VIDEO.png)](https://youtu.be/dNe4Ib8sG9s)
+
 
 #### Download Release V2 ➤ [Kext-Droplet.dmg.zip](https://github.com/chris1111/Kext-Droplet/releases/tag/V2)
 
