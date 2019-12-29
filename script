@@ -201,7 +201,7 @@ fi
 
 echo " "
 echo "
-You have to restart your mahine! "
+You have to restart your machine! "
 Sleep 3
  
     exit 0
