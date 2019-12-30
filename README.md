@@ -6,6 +6,9 @@ View full Video ⬇︎
 
 #### Download Release V2 ➤ [Kext-Droplet.dmg.zip](https://github.com/chris1111/Kext-Droplet/releases/tag/V2)
 
+### Troubleshooting: If after an installation of kexts whatever it is and the result
+wanted is not there, reinstall the same kexts a second time and Reboot.
+
 ### Simple Utility for installing kexts in macOS
 - Update 28 Dec 2019 working 10.9 to 10.15
 
