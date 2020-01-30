@@ -1,4 +1,6 @@
 # Kext-Droplet
+- Support OS X Mavericks 10.9 to macOS Catalina 10.15
+
 View full Video ⬇︎
 
 [![Modular Image Creation](https://i.ibb.co/K5bFrB5/VIDEO.png)](https://youtu.be/dNe4Ib8sG9s)
