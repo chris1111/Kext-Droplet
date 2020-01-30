@@ -9,7 +9,7 @@ View full Video ⬇︎
 ### Troubleshooting: If after an installation of kexts whatever it is and the result wanted is not there, reinstall the same kexts a second time and Reboot.
 
 ### Simple Utility for installing kexts in macOS
-- Update 28 Dec 2019 working 10.9 to 10.15
+- Update 29 Jan 2020 adapte for Catalina 10.15.3
 
 ![Capture1](https://user-images.githubusercontent.com/6248794/71537765-e6ef6e80-28ee-11ea-8138-d647b66d0e01.png)
 ![Capture2](https://user-images.githubusercontent.com/6248794/71537766-e6ef6e80-28ee-11ea-9426-2a6677af1239.png)
