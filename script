@@ -86,7 +86,9 @@ mv "$BULEDir" "${BULEDir}"`date "+%Y%m%d_%H%M%S"`
 done
 fi
 
-echo "Verification System version"
+osascript -e 'do shell script "/chown -R root:wheel /Private/tmp/Install/*.kext" with administrator privileges'
+osascript -e 'do shell script "chmod -R 755 /Private/tmp/Install/*.kext" with administrator privileges'
+
 
 MavericksMajorVersion="13"
 YosemiteMajorVersion="14"
@@ -113,14 +115,18 @@ case $ThisMajorVersion in
 esac
 
 
+
 if [ $ThisMajorVersion == $MavericksMajorVersion ]
 then
 echo "Equal than Mavericks"
 echo "No need to put the Disk in R/W"
-Sleep 1
+Sleep 2
+osascript -e 'do shell script "cp -r /Private/tmp/Install/*.kext /Library/Extensions/" with administrator privileges' 
 echo "Kext Cache repair! Please wait. ."
 Sleep 1
-osascript ./Kextcache-Rebuild-Old.app
+osascript -e 'do shell script "sudo touch /System/Library/Extensions/" with administrator privileges'
+osascript -e 'do shell script "sudo kextcache -system-prelinked-kernel" with administrator privileges'
+osascript -e 'do shell script "sudo kextcache -system-caches" with administrator privileges'
 fi
 
 
@@ -128,10 +134,13 @@ if [ $ThisMajorVersion == $YosemiteMajorVersion ]
 then
 echo "Equal than Yosemite"
 echo "No need to put the Disk in R/W"
-Sleep 1
+Sleep 2
+osascript -e 'do shell script "cp -r /Private/tmp/Install/*.kext /Library/Extensions/" with administrator privileges' 
 echo "Kext Cache repair! Please wait. ."
 Sleep 1
-osascript ./Kextcache-Rebuild-Old.app
+osascript -e 'do shell script "sudo touch /System/Library/Extensions/" with administrator privileges'
+osascript -e 'do shell script "sudo kextcache -system-prelinked-kernel" with administrator privileges'
+osascript -e 'do shell script "sudo kextcache -system-caches" with administrator privileges'
 fi
 
 
@@ -139,30 +148,38 @@ if [ $ThisMajorVersion == $EICapitanMajorVersion ]
 then
 echo "Equal than EICapitan"
 echo "No need to put the Disk in R/W"
-Sleep 1
+Sleep 2
+osascript -e 'do shell script "cp -r /Private/tmp/Install/*.kext /Library/Extensions/" with administrator privileges' 
 echo "Kext Cache repair! Please wait. ."
 Sleep 1
-osascript ./Kextcache-Rebuild-Old.app
+osascript -e 'do shell script "sudo touch /System/Library/Extensions/" with administrator privileges'
+osascript -e 'do shell script "sudo kextcache -u /" with administrator privileges'
 fi
+
 
 if [ $ThisMajorVersion == $SierraMajorVersion ]
 then
 echo "Equal than Sierra"
-echo "No need to put the Disk in R/W"
-Sleep 1
+echo "No need to put the Disk in R/"
+Sleep 2
+osascript -e 'do shell script "cp -r /Private/tmp/Install/*.kext /Library/Extensions/" with administrator privileges' 
 echo "Kext Cache repair! Please wait. ."
 Sleep 1
-osascript ./Kextcache-Rebuild.app
+osascript -e 'do shell script "sudo touch /System/Library/Extensions/" with administrator privileges'
+osascript -e 'do shell script "sudo kextcache -u /" with administrator privileges'
 fi
+
 
 if [ $ThisMajorVersion == $HighSierraMajorVersion ]
 then
 echo "Equal than HighSierra"
 echo "No need to put the Disk in R/W"
-Sleep 1
+Sleep 2
+osascript -e 'do shell script "cp -r /Private/tmp/Install/*.kext /Library/Extensions/" with administrator privileges' 
 echo "Kext Cache repair! Please wait. ."
 Sleep 1
-osascript ./Kextcache-Rebuild.app
+osascript -e 'do shell script "sudo touch /System/Library/Extensions/" with administrator privileges'
+osascript -e 'do shell script "sudo kextcache -u /" with administrator privileges'
 fi
 
 
@@ -170,10 +187,12 @@ if [ $ThisMajorVersion == $MojaveMajorVersion ]
 then
 echo "Equal than Mojave"
 echo "No need to put the Disk in R/W"
-Sleep 1
+Sleep 2
+osascript -e 'do shell script "cp -r /Private/tmp/Install/*.kext /Library/Extensions/" with administrator privileges' 
 echo "Kext Cache repair! Please wait. ."
 Sleep 1
-osascript ./Kextcache-Rebuild.app
+osascript -e 'do shell script "sudo touch /System/Library/Extensions/" with administrator privileges'
+osascript -e 'do shell script "sudo kextcache -u /" with administrator privileges'
 fi
 
 
@@ -181,30 +200,23 @@ if [ $ThisMajorVersion == $CatalinaMajorVersion ]
 then
 echo "Equal than Catalina"
 echo "Put the Disk in R/W for Catalina"
-sleep 3
-osascript -e 'do shell script "mount -uw /" with administrator privileges'
-Sleep 1
-killall Finder
-Sleep 1
+Sleep 2
+osascript -e 'do shell script "cp -r /Private/tmp/Install/*.kext /Library/Extensions/" with administrator privileges' 
 echo "Kext Cache repair! Please wait. ."
 Sleep 1
-osascript ./Kextcache-Rebuild.app
+osascript -e 'do shell script "sudo touch /System/Library/Extensions/" with administrator privileges'
+osascript -e 'do shell script "sudo kextcache -u /" with administrator privileges'
 fi
 
-    osascript -e 'do shell script "/chown -R root:wheel /Private/tmp/Install/*.kext" with administrator privileges'
-    osascript -e 'do shell script "chmod -R 755 /Private/tmp/Install/*.kext" with administrator privileges'
-    osascript -e 'do shell script "cp -r /Private/tmp/Install/*.kext /Library/Extensions/" with administrator privileges' 
- 
-
-    Sleep 2
-    rm -r /Private/tmp/Install
+Sleep 2
+osascript -e 'do shell script "rm -r /Private/tmp/Install" with administrator privileges'
+echo "Verification System version"
 
 echo " "
-echo "
-You have to restart your machine! "
-Sleep 3
- 
-    exit 0
+osascript -e 'tell app "System Events" to display dialog "You have to restart your machine!" with icon file "System:Library:CoreServices:CoreTypes.bundle:Contents:Resources:FinderIcon.icns" buttons {"Restart"} default button 1 with title "Restart"'
+Sleep 1
+osascript ./Reboot.app
+exit 0
   fi
 
 
@@ -221,10 +233,11 @@ action=$(echo $response | cut -d ':' -f2)
      exit 0
   fi
 
-### System Library Extensions is user select SLE
-if [ "$action" == "SLE" ] ; then
+echo "Root for installing kexts in S/L/E:"
 
 sleep 1
+### System Library Extensions is user select SLE
+if [ "$action" == "SLE" ] ; then
 echo "Verifying Kexts for /System/Library/Extensions/:"
 if [ -e "${3}/System/Library/Extensions/${file##*/}"  ]; then
 echo "Find ${file##*/} ➣ Save Kext for (SLE)"
@@ -237,7 +250,14 @@ mv "$BUSLEDir" "${BUSLEDir}"`date "+%Y%m%d_%H%M%S"`
 done
 fi
 
-echo "Verification System version"
+osascript -e 'do shell script "/chown -R root:wheel /Private/tmp/Install/*.kext" with administrator privileges'
+osascript -e 'do shell script "chmod -R 755 /Private/tmp/Install/*.kext" with administrator privileges'
+osascript -e 'do shell script "/chown -R root:wheel /Private/tmp/Install/*.plugin" with administrator privileges'
+osascript -e 'do shell script "chmod -R 755 /Private/tmp/Install/*.plugin" with administrator privileges'
+osascript -e 'do shell script "/chown -R root:wheel /Private/tmp/Install/*.bundle" with administrator privileges'
+osascript -e 'do shell script "chmod -R 755 /Private/tmp/Install/*.bundle" with administrator privileges'
+
+
 
 MavericksMajorVersion="13"
 YosemiteMajorVersion="14"
@@ -264,14 +284,20 @@ case $ThisMajorVersion in
 esac
 
 
+
 if [ $ThisMajorVersion == $MavericksMajorVersion ]
 then
 echo "Equal than Mavericks"
 echo "No need to put the Disk in R/W"
-Sleep 1
+Sleep 2
+osascript -e 'do shell script "cp -r /Private/tmp/Install/*.kext /System/Library/Extensions/" with administrator privileges'
+osascript -e 'do shell script "cp -r /Private/tmp/Install/*.plugin /System/Library/Extensions/" with administrator privileges'
+osascript -e 'do shell script "cp -r /Private/tmp/Install/*.bundle /System/Library/Extensions/" with administrator privileges'
 echo "Kext Cache repair! Please wait. ."
 Sleep 1
-osascript ./Kextcache-Rebuild-Old.app
+osascript -e 'do shell script "sudo touch /System/Library/Extensions/" with administrator privileges'
+osascript -e 'do shell script "sudo kextcache -system-prelinked-kernel" with administrator privileges'
+osascript -e 'do shell script "sudo kextcache -system-caches" with administrator privileges'
 fi
 
 
@@ -279,10 +305,15 @@ if [ $ThisMajorVersion == $YosemiteMajorVersion ]
 then
 echo "Equal than Yosemite"
 echo "No need to put the Disk in R/W"
-Sleep 1
+Sleep 2
+osascript -e 'do shell script "cp -r /Private/tmp/Install/*.kext /System/Library/Extensions/" with administrator privileges'
+osascript -e 'do shell script "cp -r /Private/tmp/Install/*.plugin /System/Library/Extensions/" with administrator privileges'
+osascript -e 'do shell script "cp -r /Private/tmp/Install/*.bundle /System/Library/Extensions/" with administrator privileges'
 echo "Kext Cache repair! Please wait. ."
 Sleep 1
-osascript ./Kextcache-Rebuild-Old.app
+osascript -e 'do shell script "sudo touch /System/Library/Extensions/" with administrator privileges'
+osascript -e 'do shell script "sudo kextcache -system-prelinked-kernel" with administrator privileges'
+osascript -e 'do shell script "sudo kextcache -system-caches" with administrator privileges'
 fi
 
 
@@ -290,30 +321,44 @@ if [ $ThisMajorVersion == $EICapitanMajorVersion ]
 then
 echo "Equal than EICapitan"
 echo "No need to put the Disk in R/W"
-Sleep 1
+Sleep 2
+osascript -e 'do shell script "cp -r /Private/tmp/Install/*.kext /System/Library/Extensions/" with administrator privileges'
+osascript -e 'do shell script "cp -r /Private/tmp/Install/*.plugin /System/Library/Extensions/" with administrator privileges'
+osascript -e 'do shell script "cp -r /Private/tmp/Install/*.bundle /System/Library/Extensions/" with administrator privileges'
 echo "Kext Cache repair! Please wait. ."
 Sleep 1
-osascript ./Kextcache-Rebuild-Old.app
+osascript -e 'do shell script "sudo touch /System/Library/Extensions/" with administrator privileges'
+osascript -e 'do shell script "sudo kextcache -u /" with administrator privileges'
 fi
+
 
 if [ $ThisMajorVersion == $SierraMajorVersion ]
 then
 echo "Equal than Sierra"
-echo "No need to put the Disk in R/W"
-Sleep 1
+echo "No need to put the Disk in R/"
+Sleep 2
+osascript -e 'do shell script "cp -r /Private/tmp/Install/*.kext /System/Library/Extensions/" with administrator privileges'
+osascript -e 'do shell script "cp -r /Private/tmp/Install/*.plugin /System/Library/Extensions/" with administrator privileges'
+osascript -e 'do shell script "cp -r /Private/tmp/Install/*.bundle /System/Library/Extensions/" with administrator privileges'
 echo "Kext Cache repair! Please wait. ."
 Sleep 1
-osascript ./Kextcache-Rebuild.app
+osascript -e 'do shell script "sudo touch /System/Library/Extensions/" with administrator privileges'
+osascript -e 'do shell script "sudo kextcache -u /" with administrator privileges'
 fi
+
 
 if [ $ThisMajorVersion == $HighSierraMajorVersion ]
 then
 echo "Equal than HighSierra"
 echo "No need to put the Disk in R/W"
-Sleep 1
+Sleep 2
+osascript -e 'do shell script "cp -r /Private/tmp/Install/*.kext /System/Library/Extensions/" with administrator privileges'
+osascript -e 'do shell script "cp -r /Private/tmp/Install/*.plugin /System/Library/Extensions/" with administrator privileges'
+osascript -e 'do shell script "cp -r /Private/tmp/Install/*.bundle /System/Library/Extensions/" with administrator privileges'
 echo "Kext Cache repair! Please wait. ."
 Sleep 1
-osascript ./Kextcache-Rebuild.app
+osascript -e 'do shell script "sudo touch /System/Library/Extensions/" with administrator privileges'
+osascript -e 'do shell script "sudo kextcache -u /" with administrator privileges'
 fi
 
 
@@ -321,10 +366,14 @@ if [ $ThisMajorVersion == $MojaveMajorVersion ]
 then
 echo "Equal than Mojave"
 echo "No need to put the Disk in R/W"
-Sleep 1
+Sleep 2
+osascript -e 'do shell script "cp -r /Private/tmp/Install/*.kext /System/Library/Extensions/" with administrator privileges'
+osascript -e 'do shell script "cp -r /Private/tmp/Install/*.plugin /System/Library/Extensions/" with administrator privileges'
+osascript -e 'do shell script "cp -r /Private/tmp/Install/*.bundle /System/Library/Extensions/" with administrator privileges'
 echo "Kext Cache repair! Please wait. ."
 Sleep 1
-osascript ./Kextcache-Rebuild.app
+osascript -e 'do shell script "sudo touch /System/Library/Extensions/" with administrator privileges'
+osascript -e 'do shell script "sudo kextcache -u /" with administrator privileges'
 fi
 
 
@@ -336,33 +385,25 @@ sleep 3
 osascript -e 'do shell script "mount -uw /" with administrator privileges'
 Sleep 1
 killall Finder
-Sleep 1
+Sleep 2
+osascript -e 'do shell script "cp -r /Private/tmp/Install/*.kext /System/Library/Extensions/" with administrator privileges'
+osascript -e 'do shell script "cp -r /Private/tmp/Install/*.plugin /System/Library/Extensions/" with administrator privileges'
+osascript -e 'do shell script "cp -r /Private/tmp/Install/*.bundle /System/Library/Extensions/" with administrator privileges'
 echo "Kext Cache repair! Please wait. ."
 Sleep 1
-osascript ./Kextcache-Rebuild.app
+osascript -e 'do shell script "sudo touch /System/Library/Extensions/" with administrator privileges'
+osascript -e 'do shell script "sudo kextcache -u /" with administrator privileges'
 fi
 
-
-
-    osascript -e 'do shell script "/chown -R root:wheel /Private/tmp/Install/*.kext" with administrator privileges'
-    osascript -e 'do shell script "chmod -R 755 /Private/tmp/Install/*.kext" with administrator privileges'
-    osascript -e 'do shell script "/chown -R root:wheel /Private/tmp/Install/*.plugin" with administrator privileges'
-    osascript -e 'do shell script "chmod -R 755 /Private/tmp/Install/*.plugin" with administrator privileges'
-    osascript -e 'do shell script "/chown -R root:wheel /Private/tmp/Install/*.bundle" with administrator privileges'
-    osascript -e 'do shell script "chmod -R 755 /Private/tmp/Install/*.bundle" with administrator privileges'
-    osascript -e 'do shell script "cp -r /Private/tmp/Install/*.kext /System/Library/Extensions/" with administrator privileges'
-    osascript -e 'do shell script "cp -r /Private/tmp/Install/*.plugin /System/Library/Extensions/" with administrator privileges'
-    osascript -e 'do shell script "cp -r /Private/tmp/Install/*.bundle /System/Library/Extensions/" with administrator privileges' 
-    
-
-
-    Sleep 2
-    rm -r /Private/tmp/Install
+Sleep 2
+osascript -e 'do shell script "rm -r /Private/tmp/Install" with administrator privileges'
+echo "Verification System version"
 
 echo " "
-echo "
-You have to restart your machine! "
-Sleep 3
+osascript -e 'tell app "System Events" to display dialog "You have to restart your machine!" with icon file "System:Library:CoreServices:CoreTypes.bundle:Contents:Resources:FinderIcon.icns" buttons {"Restart"} default button 1 with title "Restart"'
+Sleep 1
+osascript ./Reboot.app
+
  
     exit 0
   fi
