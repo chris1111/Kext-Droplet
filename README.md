@@ -11,7 +11,7 @@ View full Video ⬇︎
 ### Troubleshooting: If after an installation of kexts whatever it is and the result wanted is not there, reinstall the same kexts a second time and Reboot.
 
 ### Simple Utility for installing kexts in macOS
-- Lattest Update 31 Jan 2020 Fix Install /S/L/E for Catalina not need RW for Install to /L/E
+- Lattest Update 02 Fev Add Verifying SIP
 
 ![Capture1](https://user-images.githubusercontent.com/6248794/71537765-e6ef6e80-28ee-11ea-8138-d647b66d0e01.png)
 ![Capture2](https://user-images.githubusercontent.com/6248794/71537766-e6ef6e80-28ee-11ea-9426-2a6677af1239.png)
@@ -19,6 +19,10 @@ View full Video ⬇︎
 ![Capture4](https://user-images.githubusercontent.com/6248794/71537768-e6ef6e80-28ee-11ea-82ae-ed7429c52391.png)
 
 ![Capture5](https://user-images.githubusercontent.com/6248794/71545256-22be1e80-2957-11ea-99c3-b0da09189f6b.png)
+
+### If the SIP is Enable in macOS
+
+![SIP-EN](https://user-images.githubusercontent.com/6248794/73604115-7b399a80-4559-11ea-97fe-10983ffbd1e7.png)
 
 
 
