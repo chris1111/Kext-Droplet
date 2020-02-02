@@ -148,7 +148,25 @@ if [ $ThisMajorVersion == $EICapitanMajorVersion ]
 then
 echo "Equal than EICapitan"
 echo "No need to put the Disk in R/W"
+echo "Verifying SIP"
 Sleep 2
+function vertifySIP {
+	echo -n "Verifying SIP..."
+	if [[ "$(csrutil status | grep "System Integrity Protection status: disabled." | wc -l)" == "       0" && "$(csrutil status | grep "Filesystem Protections: disabled" | wc -l)" == "       0" ]]; then
+		echo ""
+osascript -e 'tell app "System Events" to display dialog "SIP is enabled on this system. Please boot into Recovery HD or an Installer USB drive, open a new Terminal Window, and enter csrutil disable. If you use Clover, you must put in the config.plist CsrActiveConfig ➢ 0x3E7
+When completed, reboot back into your standard macOS install, and run this Program again." with icon file "System:Library:CoreServices:CoreTypes.bundle:Contents:Resources:FileVaultIcon.icns" buttons {"OK"} default button 1 with title "Kext-Droplet (Error SIP Enable)"'
+
+osascript -e 'display notification "Program closing" sound name "default" with title "'"$apptitle"'" subtitle "SIP is Enable"'
+echo "QUITAPP"
+exit 0
+		return 1
+	fi
+	return 0		
+		
+}
+
+vertifySIP
 osascript -e 'do shell script "cp -r /Private/tmp/Install/*.kext /Library/Extensions/" with administrator privileges' 
 echo "Kext Cache repair! Please wait. ."
 Sleep 1
@@ -161,7 +179,25 @@ if [ $ThisMajorVersion == $SierraMajorVersion ]
 then
 echo "Equal than Sierra"
 echo "No need to put the Disk in R/"
+echo "Verifying SIP"
 Sleep 2
+function vertifySIP {
+	echo -n "Verifying SIP..."
+	if [[ "$(csrutil status | grep "System Integrity Protection status: disabled." | wc -l)" == "       0" && "$(csrutil status | grep "Filesystem Protections: disabled" | wc -l)" == "       0" ]]; then
+		echo ""
+osascript -e 'tell app "System Events" to display dialog "SIP is enabled on this system. Please boot into Recovery HD or an Installer USB drive, open a new Terminal Window, and enter csrutil disable. If you use Clover, you must put in the config.plist CsrActiveConfig ➢ 0x3E7
+When completed, reboot back into your standard macOS install, and run this Program again." with icon file "System:Library:CoreServices:CoreTypes.bundle:Contents:Resources:FileVaultIcon.icns" buttons {"OK"} default button 1 with title "Kext-Droplet (Error SIP Enable)"'
+
+osascript -e 'display notification "Program closing" sound name "default" with title "'"$apptitle"'" subtitle "SIP is Enable"'
+echo "QUITAPP"
+exit 0
+		return 1
+	fi
+	return 0		
+		
+}
+
+vertifySIP
 osascript -e 'do shell script "cp -r /Private/tmp/Install/*.kext /Library/Extensions/" with administrator privileges' 
 echo "Kext Cache repair! Please wait. ."
 Sleep 1
@@ -174,7 +210,25 @@ if [ $ThisMajorVersion == $HighSierraMajorVersion ]
 then
 echo "Equal than HighSierra"
 echo "No need to put the Disk in R/W"
+echo "Verifying SIP"
 Sleep 2
+function vertifySIP {
+	echo -n "Verifying SIP..."
+	if [[ "$(csrutil status | grep "System Integrity Protection status: disabled." | wc -l)" == "       0" && "$(csrutil status | grep "Filesystem Protections: disabled" | wc -l)" == "       0" ]]; then
+		echo ""
+osascript -e 'tell app "System Events" to display dialog "SIP is enabled on this system. Please boot into Recovery HD or an Installer USB drive, open a new Terminal Window, and enter csrutil disable. If you use Clover, you must put in the config.plist CsrActiveConfig ➢ 0x3E7
+When completed, reboot back into your standard macOS install, and run this Program again." with icon file "System:Library:CoreServices:CoreTypes.bundle:Contents:Resources:FileVaultIcon.icns" buttons {"OK"} default button 1 with title "Kext-Droplet (Error SIP Enable)"'
+
+osascript -e 'display notification "Program closing" sound name "default" with title "'"$apptitle"'" subtitle "SIP is Enable"'
+echo "QUITAPP"
+exit 0
+		return 1
+	fi
+	return 0		
+		
+}
+
+vertifySIP
 osascript -e 'do shell script "cp -r /Private/tmp/Install/*.kext /Library/Extensions/" with administrator privileges' 
 echo "Kext Cache repair! Please wait. ."
 Sleep 1
@@ -187,7 +241,25 @@ if [ $ThisMajorVersion == $MojaveMajorVersion ]
 then
 echo "Equal than Mojave"
 echo "No need to put the Disk in R/W"
+echo "Verifying SIP"
 Sleep 2
+function vertifySIP {
+	echo -n "Verifying SIP..."
+	if [[ "$(csrutil status | grep "System Integrity Protection status: disabled." | wc -l)" == "       0" && "$(csrutil status | grep "Filesystem Protections: disabled" | wc -l)" == "       0" ]]; then
+		echo ""
+osascript -e 'tell app "System Events" to display dialog "SIP is enabled on this system. Please boot into Recovery HD or an Installer USB drive, open a new Terminal Window, and enter csrutil disable. If you use Clover, you must put in the config.plist CsrActiveConfig ➢ 0x3E7
+When completed, reboot back into your standard macOS install, and run this Program again." with icon file "System:Library:CoreServices:CoreTypes.bundle:Contents:Resources:FileVaultIcon.icns" buttons {"OK"} default button 1 with title "Kext-Droplet (Error SIP Enable)"'
+
+osascript -e 'display notification "Program closing" sound name "default" with title "'"$apptitle"'" subtitle "SIP is Enable"'
+echo "QUITAPP"
+exit 0
+		return 1
+	fi
+	return 0		
+		
+}
+
+vertifySIP
 osascript -e 'do shell script "cp -r /Private/tmp/Install/*.kext /Library/Extensions/" with administrator privileges' 
 echo "Kext Cache repair! Please wait. ."
 Sleep 1
@@ -200,7 +272,25 @@ if [ $ThisMajorVersion == $CatalinaMajorVersion ]
 then
 echo "Equal than Catalina"
 echo "Put the Disk in R/W for Catalina"
+echo "Verifying SIP"
 Sleep 2
+function vertifySIP {
+	echo -n "Verifying SIP..."
+	if [[ "$(csrutil status | grep "System Integrity Protection status: disabled." | wc -l)" == "       0" && "$(csrutil status | grep "Filesystem Protections: disabled" | wc -l)" == "       0" ]]; then
+		echo ""
+osascript -e 'tell app "System Events" to display dialog "SIP is enabled on this system. Please boot into Recovery HD or an Installer USB drive, open a new Terminal Window, and enter csrutil disable. If you use Clover, you must put in the config.plist CsrActiveConfig ➢ 0x3E7
+When completed, reboot back into your standard macOS install, and run this Program again." with icon file "System:Library:CoreServices:CoreTypes.bundle:Contents:Resources:FileVaultIcon.icns" buttons {"OK"} default button 1 with title "Kext-Droplet (Error SIP Enable)"'
+
+osascript -e 'display notification "Program closing" sound name "default" with title "'"$apptitle"'" subtitle "SIP is Enable"'
+echo "QUITAPP"
+exit 0
+		return 1
+	fi
+	return 0		
+		
+}
+
+vertifySIP
 osascript -e 'do shell script "cp -r /Private/tmp/Install/*.kext /Library/Extensions/" with administrator privileges' 
 echo "Kext Cache repair! Please wait. ."
 Sleep 1
@@ -321,7 +411,25 @@ if [ $ThisMajorVersion == $EICapitanMajorVersion ]
 then
 echo "Equal than EICapitan"
 echo "No need to put the Disk in R/W"
+echo "Verifying SIP"
 Sleep 2
+function vertifySIP {
+	echo -n "Verifying SIP..."
+	if [[ "$(csrutil status | grep "System Integrity Protection status: disabled." | wc -l)" == "       0" && "$(csrutil status | grep "Filesystem Protections: disabled" | wc -l)" == "       0" ]]; then
+		echo ""
+osascript -e 'tell app "System Events" to display dialog "SIP is enabled on this system. Please boot into Recovery HD or an Installer USB drive, open a new Terminal Window, and enter csrutil disable. If you use Clover, you must put in the config.plist CsrActiveConfig ➢ 0x3E7
+When completed, reboot back into your standard macOS install, and run this Program again." with icon file "System:Library:CoreServices:CoreTypes.bundle:Contents:Resources:FileVaultIcon.icns" buttons {"OK"} default button 1 with title "Kext-Droplet (Error SIP Enable)"'
+
+osascript -e 'display notification "Program closing" sound name "default" with title "'"$apptitle"'" subtitle "SIP is Enable"'
+echo "QUITAPP"
+exit 0
+		return 1
+	fi
+	return 0		
+		
+}
+
+vertifySIP
 osascript -e 'do shell script "cp -r /Private/tmp/Install/*.kext /System/Library/Extensions/" with administrator privileges'
 osascript -e 'do shell script "cp -r /Private/tmp/Install/*.plugin /System/Library/Extensions/" with administrator privileges'
 osascript -e 'do shell script "cp -r /Private/tmp/Install/*.bundle /System/Library/Extensions/" with administrator privileges'
@@ -336,7 +444,25 @@ if [ $ThisMajorVersion == $SierraMajorVersion ]
 then
 echo "Equal than Sierra"
 echo "No need to put the Disk in R/"
+echo "Verifying SIP"
 Sleep 2
+function vertifySIP {
+	echo -n "Verifying SIP..."
+	if [[ "$(csrutil status | grep "System Integrity Protection status: disabled." | wc -l)" == "       0" && "$(csrutil status | grep "Filesystem Protections: disabled" | wc -l)" == "       0" ]]; then
+		echo ""
+osascript -e 'tell app "System Events" to display dialog "SIP is enabled on this system. Please boot into Recovery HD or an Installer USB drive, open a new Terminal Window, and enter csrutil disable. If you use Clover, you must put in the config.plist CsrActiveConfig ➢ 0x3E7
+When completed, reboot back into your standard macOS install, and run this Program again." with icon file "System:Library:CoreServices:CoreTypes.bundle:Contents:Resources:FileVaultIcon.icns" buttons {"OK"} default button 1 with title "Kext-Droplet (Error SIP Enable)"'
+
+osascript -e 'display notification "Program closing" sound name "default" with title "'"$apptitle"'" subtitle "SIP is Enable"'
+echo "QUITAPP"
+exit 0
+		return 1
+	fi
+	return 0		
+		
+}
+
+vertifySIP
 osascript -e 'do shell script "cp -r /Private/tmp/Install/*.kext /System/Library/Extensions/" with administrator privileges'
 osascript -e 'do shell script "cp -r /Private/tmp/Install/*.plugin /System/Library/Extensions/" with administrator privileges'
 osascript -e 'do shell script "cp -r /Private/tmp/Install/*.bundle /System/Library/Extensions/" with administrator privileges'
@@ -351,7 +477,25 @@ if [ $ThisMajorVersion == $HighSierraMajorVersion ]
 then
 echo "Equal than HighSierra"
 echo "No need to put the Disk in R/W"
+echo "Verifying SIP"
 Sleep 2
+function vertifySIP {
+	echo -n "Verifying SIP..."
+	if [[ "$(csrutil status | grep "System Integrity Protection status: disabled." | wc -l)" == "       0" && "$(csrutil status | grep "Filesystem Protections: disabled" | wc -l)" == "       0" ]]; then
+		echo ""
+osascript -e 'tell app "System Events" to display dialog "SIP is enabled on this system. Please boot into Recovery HD or an Installer USB drive, open a new Terminal Window, and enter csrutil disable. If you use Clover, you must put in the config.plist CsrActiveConfig ➢ 0x3E7
+When completed, reboot back into your standard macOS install, and run this Program again." with icon file "System:Library:CoreServices:CoreTypes.bundle:Contents:Resources:FileVaultIcon.icns" buttons {"OK"} default button 1 with title "Kext-Droplet (Error SIP Enable)"'
+
+osascript -e 'display notification "Program closing" sound name "default" with title "'"$apptitle"'" subtitle "SIP is Enable"'
+echo "QUITAPP"
+exit 0
+		return 1
+	fi
+	return 0		
+		
+}
+
+vertifySIP
 osascript -e 'do shell script "cp -r /Private/tmp/Install/*.kext /System/Library/Extensions/" with administrator privileges'
 osascript -e 'do shell script "cp -r /Private/tmp/Install/*.plugin /System/Library/Extensions/" with administrator privileges'
 osascript -e 'do shell script "cp -r /Private/tmp/Install/*.bundle /System/Library/Extensions/" with administrator privileges'
@@ -366,7 +510,25 @@ if [ $ThisMajorVersion == $MojaveMajorVersion ]
 then
 echo "Equal than Mojave"
 echo "No need to put the Disk in R/W"
+echo "Verifying SIP"
 Sleep 2
+function vertifySIP {
+	echo -n "Verifying SIP..."
+	if [[ "$(csrutil status | grep "System Integrity Protection status: disabled." | wc -l)" == "       0" && "$(csrutil status | grep "Filesystem Protections: disabled" | wc -l)" == "       0" ]]; then
+		echo ""
+osascript -e 'tell app "System Events" to display dialog "SIP is enabled on this system. Please boot into Recovery HD or an Installer USB drive, open a new Terminal Window, and enter csrutil disable. If you use Clover, you must put in the config.plist CsrActiveConfig ➢ 0x3E7
+When completed, reboot back into your standard macOS install, and run this Program again." with icon file "System:Library:CoreServices:CoreTypes.bundle:Contents:Resources:FileVaultIcon.icns" buttons {"OK"} default button 1 with title "Kext-Droplet (Error SIP Enable)"'
+
+osascript -e 'display notification "Program closing" sound name "default" with title "'"$apptitle"'" subtitle "SIP is Enable"'
+echo "QUITAPP"
+exit 0
+		return 1
+	fi
+	return 0		
+		
+}
+
+vertifySIP
 osascript -e 'do shell script "cp -r /Private/tmp/Install/*.kext /System/Library/Extensions/" with administrator privileges'
 osascript -e 'do shell script "cp -r /Private/tmp/Install/*.plugin /System/Library/Extensions/" with administrator privileges'
 osascript -e 'do shell script "cp -r /Private/tmp/Install/*.bundle /System/Library/Extensions/" with administrator privileges'
@@ -381,7 +543,25 @@ if [ $ThisMajorVersion == $CatalinaMajorVersion ]
 then
 echo "Equal than Catalina"
 echo "Put the Disk in R/W for Catalina"
-sleep 3
+echo "Verifying SIP"
+Sleep 2
+function vertifySIP {
+	echo -n "Verifying SIP..."
+	if [[ "$(csrutil status | grep "System Integrity Protection status: disabled." | wc -l)" == "       0" && "$(csrutil status | grep "Filesystem Protections: disabled" | wc -l)" == "       0" ]]; then
+		echo ""
+osascript -e 'tell app "System Events" to display dialog "SIP is enabled on this system. Please boot into Recovery HD or an Installer USB drive, open a new Terminal Window, and enter csrutil disable. If you use Clover, you must put in the config.plist CsrActiveConfig ➢ 0x3E7
+When completed, reboot back into your standard macOS install, and run this Program again." with icon file "System:Library:CoreServices:CoreTypes.bundle:Contents:Resources:FileVaultIcon.icns" buttons {"OK"} default button 1 with title "Kext-Droplet (Error SIP Enable)"'
+
+osascript -e 'display notification "Program closing" sound name "default" with title "'"$apptitle"'" subtitle "SIP is Enable"'
+echo "QUITAPP"
+exit 0
+		return 1
+	fi
+	return 0		
+		
+}
+
+vertifySIP
 osascript -e 'do shell script "mount -uw /" with administrator privileges'
 Sleep 1
 killall Finder
