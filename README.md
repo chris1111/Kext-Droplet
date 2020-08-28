@@ -10,6 +10,9 @@ View full Video ⬇︎
 
 
 #### Download Release V2 ➤ [Kext-Droplet.dmg.zip](https://github.com/chris1111/Kext-Droplet/releases/tag/V2)
+#### Download for macOS Big Sur 11 ➤ [Kext-Droplet-Big-Sur](https://github.com/chris1111/Kext-Droplet-Big-Sur)
+
+
 
 ### Troubleshooting: If after an installation of kexts whatever it is and the result wanted is not there, reinstall the same kexts a second time and Reboot.
 
